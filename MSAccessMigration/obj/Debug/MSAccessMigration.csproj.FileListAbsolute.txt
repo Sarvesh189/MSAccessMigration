@@ -1,0 +1,13 @@
+D:\Fifththird\MSAccessMigrationApplication\MSAccessMigration\MSAccessMigration\bin\Debug\MSAccessMigration.exe.config
+D:\Fifththird\MSAccessMigrationApplication\MSAccessMigration\MSAccessMigration\bin\Debug\MSAccessMigration.exe
+D:\Fifththird\MSAccessMigrationApplication\MSAccessMigration\MSAccessMigration\bin\Debug\MSAccessMigration.pdb
+D:\Fifththird\MSAccessMigrationApplication\MSAccessMigration\MSAccessMigration\obj\Debug\MSAccessMigration.csproj.ResolveComReference.cache
+D:\Fifththird\MSAccessMigrationApplication\MSAccessMigration\MSAccessMigration\obj\Debug\MSAccessMigration.Properties.Resources.resources
+D:\Fifththird\MSAccessMigrationApplication\MSAccessMigration\MSAccessMigration\obj\Debug\MSAccessMigration.csproj.GenerateResource.Cache
+D:\Fifththird\MSAccessMigrationApplication\MSAccessMigration\MSAccessMigration\obj\Debug\MSAccessMigration.exe
+D:\Fifththird\MSAccessMigrationApplication\MSAccessMigration\MSAccessMigration\obj\Debug\MSAccessMigration.pdb
+D:\Fifththird\MSAccessMigrationApplication\MSAccessMigration\MSAccessMigration\obj\Debug\MSAccessMigration.csprojResolveAssemblyReference.cache
+D:\Fifththird\MSAccessMigrationApplication\MSAccessMigration\MSAccessMigration\obj\Debug\MSAccessMigration.frmMSAccessMigration.resources
+D:\Fifththird\MSAccessMigrationApplication\MSAccessMigration\MSAccessMigration\obj\Debug\MSAccessMigration.SQLMigrationDialog.resources
+D:\Fifththird\MSAccessMigrationApplication\MSAccessMigration\MSAccessMigration\bin\Debug\Autofac.dll
+D:\Fifththird\MSAccessMigrationApplication\MSAccessMigration\MSAccessMigration\bin\Debug\Autofac.xml
