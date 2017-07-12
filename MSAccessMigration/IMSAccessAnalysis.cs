@@ -13,6 +13,8 @@ namespace MSAccessMigration
         List<TableInfo> GetTablesName(string accessDBfileName);
         List<string> GetReport(string accessDBfileName);
         List<string> GetQueries(string accessDBfileName);
+
+        List<string> GetMacros(string accessDBfileName);
     }
 }
  

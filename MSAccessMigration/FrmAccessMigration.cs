@@ -65,6 +65,12 @@ namespace MSAccessMigration
             {
                 ctrl.AppendText(Environment.NewLine + str);
             }
+            ctrl.AppendText(Environment.NewLine + "--------------Macros---------------");
+
+            foreach (string str in _dbEngineObject.Macros)
+            {
+                ctrl.AppendText(Environment.NewLine + str);
+            }
         }
 
         private void btnSourceFile_Click(object sender, EventArgs e)
@@ -113,7 +119,9 @@ namespace MSAccessMigration
 
         private void btnAnalyse_Click(object sender, EventArgs e)
         {
-         //   CreateDestinationDB(txtDestinationFile.Text);
+
+            
+            //   CreateDestinationDB(txtDestinationFile.Text);
             _dbEngineObject = _migrationManager.AnalyseAccessDB(txtSourceFile.Text);
 
             sourceText.AppendText("Source DBEngine Analysis");
@@ -153,7 +161,16 @@ namespace MSAccessMigration
                     sourceText.AppendText(Environment.NewLine + str);
                 }
             }
-          
+
+            sourceText.AppendText(Environment.NewLine + "--------------Macros---------------");
+            if (_dbEngineObject.Macros != null)
+            {
+                foreach (string str in _dbEngineObject.Macros)
+                {
+                    sourceText.AppendText(Environment.NewLine + str);
+                }
+            }
+
             btnMigrate.Enabled = true;
             chkSQLMigration.Enabled = true;
         }
@@ -187,21 +204,22 @@ namespace MSAccessMigration
                 chkSQLMigration.Checked = false;
             }
         }
-
-        private void btnProcessClear_Click(object sender, EventArgs e)
+        private void KillProcess()
         {
-            Process[] runningProcesses = Process.GetProcesses();
-            foreach (Process process in runningProcesses)
+            foreach (var process in Process.GetProcessesByName("MSAccess"))
             {
-                // now check the modules of the process
-                foreach (ProcessModule module in process.Modules)
-                {
-                    if (module.FileName.Equals("MSACCESS.exe"))
-                    {
-                        process.Kill();
-                    }
-                }
+                process.Kill();
             }
+        }
+
+        private void contextMenuStrip1_MouseClick(object sender, MouseEventArgs e)
+        {
+            
+        }
+
+        private void ClearProcess_Click(object sender, EventArgs e)
+        {
+            KillProcess();
         }
     }
 }

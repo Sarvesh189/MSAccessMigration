@@ -31,6 +31,7 @@ namespace MSAccessMigration
             _dbEngineobject.Tables = _msaccessAnalysis.GetTablesName(accessDBfileName);
             _dbEngineobject.Reports = _msaccessAnalysis.GetReport(accessDBfileName);
             _dbEngineobject.Queries = _msaccessAnalysis.GetQueries(accessDBfileName);
+            _dbEngineobject.Macros = _msaccessAnalysis.GetMacros(accessDBfileName);
             return _dbEngineobject;
         }
 
@@ -45,6 +46,7 @@ namespace MSAccessMigration
                 TransferObjectToSQL(tables, destinationDBFile);
             _msaccessTransfer.TransferReport(sourceDBFile, destinationDBFile, progress);
             _msaccessTransfer.TransferQueries(sourceDBFile, destinationDBFile, progress);
+            _msaccessTransfer.TransferMacros(sourceDBFile, destinationDBFile, progress);
             return true;
         }
 

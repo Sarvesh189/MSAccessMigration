@@ -121,5 +121,18 @@ namespace MSAccessMigration
 
             return _prps;
         }
+
+      public  void TransferMacros(string sourceDBFile, string destinationDBFile, IProgress<int> progress) {
+
+            _application.OpenCurrentDatabase(sourceDBFile, false, "");
+            Access.DoCmd _docmd = _application.DoCmd;
+            for (int index = 0; index < _dbEngineObject.Macros.Count; index++)
+            {
+                _docmd.CopyObject(destinationDBFile, _dbEngineObject.Macros[index], Access.AcObjectType.acMacro, _dbEngineObject.Macros[index]);
+                progress.Report((index + 1) * 100 / _dbEngineObject.Macros.Count);
+
+            }
+            _application.CloseCurrentDatabase();
+        }
     }
 }

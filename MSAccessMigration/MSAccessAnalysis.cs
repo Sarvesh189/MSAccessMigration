@@ -71,6 +71,27 @@ namespace MSAccessMigration
             return reportsName;
         }
 
+        public List<string> GetMacros(string accessDBfileName)
+        {
+            var macrosname = new List<string>();
+            Access.Application _application = new Access.Application();
+
+            _application.OpenCurrentDatabase(accessDBfileName, true, "");
+
+            Access.AllObjects macros = _application.CurrentProject.AllMacros;
+
+            foreach (var rpt in macros)
+            {
+                var typedesc = TypeDescriptor.GetProperties(rpt).Find("Name", true);
+
+                macrosname.Add(typedesc.GetValue(rpt).ToString());
+            }
+
+            _application.CloseCurrentDatabase();
+
+            return macrosname;
+        }
+
         public List<TableInfo> GetTablesName(string accessDBfileName)
         {
             var tables = new List<TableInfo>();

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.btnMigrate = new System.Windows.Forms.Button();
             this.sourceText = new System.Windows.Forms.RichTextBox();
             this.fileDialog = new System.Windows.Forms.OpenFileDialog();
@@ -44,7 +45,10 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.chkSQLMigration = new System.Windows.Forms.CheckBox();
+            this.PopupMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.ClearProcess = new System.Windows.Forms.ToolStripMenuItem();
             this.FileGroup.SuspendLayout();
+            this.PopupMenu.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnMigrate
@@ -194,6 +198,22 @@
             this.chkSQLMigration.UseVisualStyleBackColor = true;
             this.chkSQLMigration.CheckedChanged += new System.EventHandler(this.chkSQLMigration_CheckedChanged);
             // 
+            // PopupMenu
+            // 
+            this.PopupMenu.ImageScalingSize = new System.Drawing.Size(24, 24);
+            this.PopupMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ClearProcess});
+            this.PopupMenu.Name = "contextMenuStrip1";
+            this.PopupMenu.Size = new System.Drawing.Size(260, 67);
+            this.PopupMenu.MouseClick += new System.Windows.Forms.MouseEventHandler(this.contextMenuStrip1_MouseClick);
+            // 
+            // ClearProcess
+            // 
+            this.ClearProcess.Name = "ClearProcess";
+            this.ClearProcess.Size = new System.Drawing.Size(259, 30);
+            this.ClearProcess.Text = "Clear Access Process";
+            this.ClearProcess.Click += new System.EventHandler(this.ClearProcess_Click);
+            // 
             // frmMSAccessMigration
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -212,6 +232,7 @@
             this.Text = "MSAccessMigration";
             this.FileGroup.ResumeLayout(false);
             this.FileGroup.PerformLayout();
+            this.PopupMenu.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -235,6 +256,8 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.CheckBox chkSQLMigration;
+        private System.Windows.Forms.ContextMenuStrip PopupMenu;
+        private System.Windows.Forms.ToolStripMenuItem ClearProcess;
     }
 }
 
