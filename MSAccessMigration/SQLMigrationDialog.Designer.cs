@@ -56,10 +56,13 @@
             // 
             // chkListTables
             // 
+            this.chkListTables.BackColor = System.Drawing.Color.White;
+            this.chkListTables.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.chkListTables.ForeColor = System.Drawing.SystemColors.Desktop;
             this.chkListTables.FormattingEnabled = true;
             this.chkListTables.Location = new System.Drawing.Point(119, 35);
             this.chkListTables.Name = "chkListTables";
-            this.chkListTables.Size = new System.Drawing.Size(256, 88);
+            this.chkListTables.Size = new System.Drawing.Size(256, 84);
             this.chkListTables.TabIndex = 4;
             // 
             // SQLMigrationDialog

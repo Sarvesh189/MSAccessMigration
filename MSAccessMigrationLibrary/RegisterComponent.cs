@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MSAccessMigration
+namespace MSAccessMigrationLibrary
 {
-   public class RegisterComponent
+    public class RegisterComponent
     {
         public static IContainer Container { get; set; }
         public static void Register()
@@ -17,9 +17,9 @@ namespace MSAccessMigration
             builder.RegisterType<MSAccessTransfer>().As<IMSAccessTransfer>();
             builder.RegisterType<MigrationManager>().As<IMigrationManager>();
             Container = builder.Build();
-             
+
         }
 
-       
+
     }
 }

@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MSAccessMigration
+namespace MSAccessMigrationLibrary
 {
     public interface IMSAccessTransfer
     {
-        DBEngineObject DBEngineObject{get;set;}
+        DBEngineObject DBEngineObject { get; set; }
         List<string> TransferInternalTables(string sourceDBFile, string destinationDBFile, IProgress<int> progress);
 
         void TransferForm(string sourceDBFile, string destinationDBFile, IProgress<int> progress);

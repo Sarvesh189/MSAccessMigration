@@ -204,7 +204,7 @@
             this.PopupMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ClearProcess});
             this.PopupMenu.Name = "contextMenuStrip1";
-            this.PopupMenu.Size = new System.Drawing.Size(260, 67);
+            this.PopupMenu.Size = new System.Drawing.Size(260, 34);
             this.PopupMenu.MouseClick += new System.Windows.Forms.MouseEventHandler(this.contextMenuStrip1_MouseClick);
             // 
             // ClearProcess
@@ -218,6 +218,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(1754, 758);
             this.Controls.Add(this.chkSQLMigration);
             this.Controls.Add(this.label4);

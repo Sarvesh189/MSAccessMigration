@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using MSAccessMigrationLibrary;
 
 namespace MSAccessMigration
 {
@@ -118,13 +118,13 @@ namespace MSAccessMigration
         }
 
         private void btnAnalyse_Click(object sender, EventArgs e)
-        {
-
-            
-            //   CreateDestinationDB(txtDestinationFile.Text);
+        {     
+                     
             _dbEngineObject = _migrationManager.AnalyseAccessDB(txtSourceFile.Text);
 
-            sourceText.AppendText("Source DBEngine Analysis");
+     //    var strg =   Utility.FormatAnalysis(_dbEngineObject);
+
+          sourceText.AppendText("Source DBEngine Analysis");
 
             sourceText.AppendText(Environment.NewLine + "--------------Local Tables---------------");
             if (_dbEngineObject.Tables.Exists(t=>t.TableType=="Internal"))

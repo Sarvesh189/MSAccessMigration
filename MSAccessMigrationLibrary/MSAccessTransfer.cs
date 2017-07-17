@@ -1,10 +1,10 @@
-﻿using AccessDAO=Microsoft.Office.Interop.Access.Dao;
+﻿using AccessDAO = Microsoft.Office.Interop.Access.Dao;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
 using Access = Microsoft.Office.Interop.Access;
 
-namespace MSAccessMigration
+namespace MSAccessMigrationLibrary
 {
     public class MSAccessTransfer : IMSAccessTransfer
     {
@@ -13,7 +13,7 @@ namespace MSAccessMigration
         public MSAccessTransfer()
         {
             _application = new Access.Application();
-            
+
         }
 
         public DBEngineObject DBEngineObject
@@ -21,7 +21,7 @@ namespace MSAccessMigration
             get { return _dbEngineObject; }
             set { _dbEngineObject = value; }
         }
-            
+
         public void TransferForm(string sourceDBFile, string destinationDBFile, IProgress<int> progress)
         {
             _application.OpenCurrentDatabase(sourceDBFile, false, "");
@@ -122,7 +122,8 @@ namespace MSAccessMigration
             return _prps;
         }
 
-      public  void TransferMacros(string sourceDBFile, string destinationDBFile, IProgress<int> progress) {
+        public void TransferMacros(string sourceDBFile, string destinationDBFile, IProgress<int> progress)
+        {
 
             _application.OpenCurrentDatabase(sourceDBFile, false, "");
             Access.DoCmd _docmd = _application.DoCmd;

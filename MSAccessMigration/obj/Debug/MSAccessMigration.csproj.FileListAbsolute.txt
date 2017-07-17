@@ -11,3 +11,5 @@ D:\Fifththird\MSAccessMigrationApplication\MSAccessMigration\MSAccessMigration\o
 D:\Fifththird\MSAccessMigrationApplication\MSAccessMigration\MSAccessMigration\obj\Debug\MSAccessMigration.SQLMigrationDialog.resources
 D:\Fifththird\MSAccessMigrationApplication\MSAccessMigration\MSAccessMigration\bin\Debug\Autofac.dll
 D:\Fifththird\MSAccessMigrationApplication\MSAccessMigration\MSAccessMigration\bin\Debug\Autofac.xml
+D:\Fifththird\MSAccessMigrationApplication\MSAccessMigration\MSAccessMigration\bin\Debug\MSAccessMigrationLibrary.dll
+D:\Fifththird\MSAccessMigrationApplication\MSAccessMigration\MSAccessMigration\bin\Debug\MSAccessMigrationLibrary.pdb

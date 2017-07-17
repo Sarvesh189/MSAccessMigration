@@ -1,14 +1,15 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Access = Microsoft.Office.Interop.Access;
 using Microsoft.Office.Interop.Access.Dao;
 using System.ComponentModel;
 using System.Configuration;
-namespace MSAccessMigration
+
+
+namespace MSAccessMigrationLibrary
 {
-    public class MigrationManager:IMigrationManager
+    public class MigrationManager : IMigrationManager
     {
 
         DBEngineObject _dbEngineobject;
@@ -20,13 +21,13 @@ namespace MSAccessMigration
             _dbEngineobject = new DBEngineObject();
             _msaccessAnalysis = msaccessAnalysis;
             _msaccessTransfer = msaccessTransfer;
-           _application = new Access.Application();
+            _application = new Access.Application();
 
         }
-       
+
         public DBEngineObject AnalyseAccessDB(string accessDBfileName)
         {
-            
+
             _dbEngineobject.Forms = _msaccessAnalysis.GetFormNames(accessDBfileName);
             _dbEngineobject.Tables = _msaccessAnalysis.GetTablesName(accessDBfileName);
             _dbEngineobject.Reports = _msaccessAnalysis.GetReport(accessDBfileName);
@@ -35,14 +36,14 @@ namespace MSAccessMigration
             return _dbEngineobject;
         }
 
-    
+
 
         public bool TransferAccessDB(string sourceDBFile, string destinationDBFile, List<string> tables, IProgress<int> progress)
         {
             _msaccessTransfer.DBEngineObject = _dbEngineobject;
             _msaccessTransfer.TransferInternalTables(sourceDBFile, destinationDBFile, progress);
             _msaccessTransfer.TransferForm(sourceDBFile, destinationDBFile, progress);
-            if(tables != null && tables.Count >0)
+            if (tables != null && tables.Count > 0)
                 TransferObjectToSQL(tables, destinationDBFile);
             _msaccessTransfer.TransferReport(sourceDBFile, destinationDBFile, progress);
             _msaccessTransfer.TransferQueries(sourceDBFile, destinationDBFile, progress);
@@ -50,9 +51,9 @@ namespace MSAccessMigration
             return true;
         }
 
-       
 
-        public List<string> TransferObjectToSQL(List<string> tables,string sourceAccessfile)
+
+        public List<string> TransferObjectToSQL(List<string> tables, string sourceAccessfile)
         {
             List<string> _prps = new List<string>();
             string strConnect = ConfigurationManager.AppSettings["SQLConnection"].ToString();
@@ -63,7 +64,7 @@ namespace MSAccessMigration
                 _application.OpenCurrentDatabase(sourceAccessfile, false, "");
 
                 _docmd.TransferDatabase(Access.AcDataTransferType.acExport, "ODBC Database", strConnect, Access.AcObjectType.acTable, table, table);// "","testdb",false,"sa","Password",true);
-                _application.CloseCurrentDatabase();             
+                _application.CloseCurrentDatabase();
 
                 _prps.Add(table);
             }
@@ -84,22 +85,22 @@ namespace MSAccessMigration
                 Database _db = _dbEngine.Workspaces[0].OpenDatabase(sourceAccessfile, false, false, "");
                 _db.TableDefs.Refresh();
 
-                var newtbl = _db.CreateTableDef(table, 0, table, strConnect);                       
+                var newtbl = _db.CreateTableDef(table, 0, table, strConnect);
 
                 _db.TableDefs.Append(newtbl);
-                
+
                 _db.Close();
-              }
-         
+            }
+
             return _prps;
         }
 
-       
 
-      
 
-      
 
-      
+
+
+
+
     }
 }

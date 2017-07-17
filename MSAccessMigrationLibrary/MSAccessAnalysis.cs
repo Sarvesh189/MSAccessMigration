@@ -7,46 +7,68 @@ using System.ComponentModel;
 using System.Configuration;
 using System.Diagnostics;
 
-namespace MSAccessMigration
+
+namespace MSAccessMigrationLibrary
 {
     public class MSAccessAnalysis : IMSAccessAnalysis
     {
         public List<string> GetFormNames(string accessDBfileName)
         {
+           
             var frmNames = new List<string>();
-            Access.Application _application = new Access.Application();
-
-            _application.OpenCurrentDatabase(accessDBfileName, true, "");
-
-            Access.AllObjects forms = _application.CurrentProject.AllForms;
-
-            foreach (var frm in forms)
+            try
             {
-                var typedesc = TypeDescriptor.GetProperties(frm).Find("Name", true);
+                Access.Application _application = new Access.Application();
 
-                frmNames.Add(typedesc.GetValue(frm).ToString());
+                _application.OpenCurrentDatabase(accessDBfileName, true, "");
+
+                Access.AllObjects forms = _application.CurrentProject.AllForms;
+
+                foreach (var frm in forms)
+                {
+                    try
+                    {
+                        var typedesc = TypeDescriptor.GetProperties(frm).Find("Name", true);
+
+                        frmNames.Add(typedesc.GetValue(frm).ToString());
+                    }
+                    catch (Exception ex)
+                    {
+                        Utility.ExceptionList.Add(ex);
+
+                    }
+
+                }
+
+                _application.CloseCurrentDatabase();
             }
-
-            _application.CloseCurrentDatabase();
-
+            catch (Exception ex)
+            { Utility.ExceptionList.Add(ex); }
             return frmNames;
         }
 
         public List<string> GetQueries(string accessDBfileName)
         {
+          
             var queries = new List<string>();
-            DBEngine _dbEngine = new DBEngine();
-            Database _db = _dbEngine.OpenDatabase(accessDBfileName, false, false, "");
-            var _queries = _db.QueryDefs;
-
-            for (int index = 0; index < _queries.Count; index++)
+            try
             {
-                var _query = _queries[index];
-                queries.Add(_query.Name);
+                DBEngine _dbEngine = new DBEngine();
+                Database _db = _dbEngine.OpenDatabase(accessDBfileName, false, false, "");
+                var _queries = _db.QueryDefs;
+
+                for (int index = 0; index < _queries.Count; index++)
+                {
+                    var _query = _queries[index];
+                    queries.Add(_query.Name);
+                }
+
+                _db.Close();
             }
-
-            _db.Close();
-
+            catch (Exception ex)
+            {
+                Utility.ExceptionList.Add(ex);
+            }
             return queries;
         }
 
@@ -104,14 +126,15 @@ namespace MSAccessMigration
             for (int i = 0; i < _db.TableDefs.Count; i++)
             {
                 var tbdl = _db.TableDefs[i];
-                if (tbdl.Attributes != 2 && !tbdl.Name.StartsWith("MSys")) {
+                if (tbdl.Attributes != 2 && !tbdl.Name.StartsWith("MSys"))
+                {
                     if (!string.IsNullOrEmpty(tbdl.Connect))
                         tables.Add(new TableInfo(tbdl.Name, "External"));
                     else
                         tables.Add(new TableInfo(tbdl.Name, "Internal"));
                 }
-                    //non system table
-               // debugtables.Add(tbdl.Name);
+                //non system table
+                // debugtables.Add(tbdl.Name);
             }
 
 
@@ -123,10 +146,10 @@ namespace MSAccessMigration
             //{
             //    for (int i = 0; i < _rs.Fields.Count; i++)
             //        debugtables.Add(_rs.Fields[i].Name + ' ' + _rs.Fields[i].Value);
-                 
-               
 
-                
+
+
+
             //    if (_rs.Fields["TableType"].Value == 1 && _rs.Fields["Attributes"].Value == 0)
             //        tables.Add(new TableInfo(_rs.Fields[0].Value,"Internal"));
             //    if (_rs.Fields["TableType"].Value == 4 && _rs.Fields["Attributes"].Value == 0)

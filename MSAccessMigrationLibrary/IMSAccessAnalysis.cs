@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MSAccessMigration
+namespace MSAccessMigrationLibrary
 {
-  public interface IMSAccessAnalysis
+    public interface IMSAccessAnalysis
     {
 
         List<string> GetFormNames(string accessDBfileName);
@@ -17,4 +17,3 @@ namespace MSAccessMigration
         List<string> GetMacros(string accessDBfileName);
     }
 }
- 
