@@ -38,18 +38,23 @@ namespace MSAccessMigration
         }
 
         private async void btnMigration_Click(object sender, EventArgs e)
-        {         
-           var result =  await Progress();
-             await AnalyseResult(txtDestinationFile.Text,destinationText);
-            if (result)
+        {
+            if (!string.IsNullOrEmpty(txtDestinationFile.Text.Trim()))
             {
-                MessageBox.Show("Done!");
+                var result = await Progress();
+                await AnalyseResult(txtDestinationFile.Text, destinationText);
+                if (result)
+                {
+                    MessageBox.Show("Done!");
+                }
             }
+            else { MessageBox.Show("Please select destination file."); }
           
         }
 
         private async Task AnalyseResult(string file,RichTextBox ctrl)
         {
+            
           var formattedText =  await Task.Run(() => Utility.FormatAnalysis(_migrationManager.AnalyseAccessDB(file)));
             var destinationAnalysis = Utility.GVAccessAnalysisInfo;
 
@@ -111,21 +116,28 @@ namespace MSAccessMigration
 
         private void btnAnalyse_Click(object sender, EventArgs e)
         {
-            Cursor.Current = Cursors.WaitCursor;        
-            _dbEngineObject = _migrationManager.AnalyseAccessDB(txtSourceFile.Text);
+            if (!string.IsNullOrEmpty(txtSourceFile.Text.Trim()))
+            {
+                Cursor.Current = Cursors.WaitCursor;
+                _dbEngineObject = _migrationManager.AnalyseAccessDB(txtSourceFile.Text);
 
-            var strg =   Utility.FormatAnalysis(_dbEngineObject);
+                var strg = Utility.FormatAnalysis(_dbEngineObject);
 
-            sourceText.AppendText("Source DBEngine Analysis"+Environment.NewLine);
-            sourceText.AppendText(strg);
-            var analysisList =  Utility.DeepCopy(Utility.GVAccessAnalysisInfo);
-            gvAnalysis.DataSource = analysisList;
-            gvAnalysis.Refresh();
-         
-           
-            btnMigrate.Enabled = true;
-            chkSQLMigration.Enabled = true;
-            Cursor.Current = Cursors.Arrow;
+                sourceText.AppendText("Source DBEngine Analysis" + Environment.NewLine);
+                sourceText.AppendText(strg);
+                var analysisList = Utility.DeepCopy(Utility.GVAccessAnalysisInfo);
+                gvAnalysis.DataSource = analysisList;
+                gvAnalysis.Refresh();
+
+
+                btnMigrate.Enabled = true;
+                chkSQLMigration.Enabled = true;
+                Cursor.Current = Cursors.Arrow;
+            }
+            else
+            {
+                MessageBox.Show("Please select an MS Access file");
+            }
         }
 
       
@@ -159,9 +171,15 @@ namespace MSAccessMigration
         }
         private void KillProcess()
         {
-            foreach (var process in Process.GetProcessesByName("MSAccess"))
+            try
             {
-                process.Kill();
+                foreach (var process in Process.GetProcessesByName("MSAccess"))
+                {
+                    process.Kill();
+                }
+            } catch 
+            {
+                Utility.ExceptionList.Add(new Exception("Killing process issue."));
             }
         }
 
@@ -183,6 +201,8 @@ namespace MSAccessMigration
             sourceText.Text = string.Empty;
             destinationText.Text = string.Empty;
             gvDestination.DataSource = null;
+            migrationProgressBar.Value = 0;
+
             KillProcess();
         }
     }
