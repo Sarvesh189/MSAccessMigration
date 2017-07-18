@@ -21,56 +21,48 @@ namespace MSAccessMigration
 
             _migrationManager = RegisterComponent.Container.Resolve<IMigrationManager>();
             _sqlmigrationTables = new List<string>();
+            _migrationManager.MSAccessTransfer.ItemTransferred += MSAccessTransfer_ItemTransferred;
+        }
+
+        private void MSAccessTransfer_ItemTransferred(object sender, ItemTransferEventArg e)
+        {
+            foreach (DataGridViewRow row in gvAnalysis.Rows)
+            {
+                if (row.Cells["AccessObject"].Value.ToString() == e.ItemName)
+                {
+                    row.Cells["IsMigrated"].Value = true;
+                    row.DefaultCellStyle.BackColor = System.Drawing.Color.Green;
+                    row.DefaultCellStyle.ForeColor = System.Drawing.Color.White;
+                }
+            }
         }
 
         private async void btnMigration_Click(object sender, EventArgs e)
         {         
-             await Progress();
-             await AnalyseResult(txtDestinationFile.Text,destinationText);  
+           var result =  await Progress();
+             await AnalyseResult(txtDestinationFile.Text,destinationText);
+            if (result)
+            {
+                MessageBox.Show("Done!");
+            }
           
         }
 
         private async Task AnalyseResult(string file,RichTextBox ctrl)
         {
-            _dbEngineObject =await Task.Run(()=> _migrationManager.AnalyseAccessDB(file));
+          var formattedText =  await Task.Run(() => Utility.FormatAnalysis(_migrationManager.AnalyseAccessDB(file)));
+            var destinationAnalysis = Utility.GVAccessAnalysisInfo;
 
             ctrl.AppendText("Destination DBEngine Analysis");
 
-            ctrl.AppendText(Environment.NewLine + "--------------Tables---------------");
+            ctrl.AppendText(Environment.NewLine + formattedText);
 
-            foreach (var tableInfo in _dbEngineObject.Tables.FindAll(t=>t.TableType=="Internal"))
-            {
-                ctrl.AppendText(Environment.NewLine + tableInfo.TableName);
-            }
+            ctrl.AppendText(Environment.NewLine + Utility.GetFormattedException());
 
-            
-
-            ctrl.AppendText(Environment.NewLine + "--------------Forms---------------");
-
-            foreach (string str in _dbEngineObject.Forms)
-            {
-                ctrl.AppendText(Environment.NewLine + str);
-            }
-
-            ctrl.AppendText(Environment.NewLine + "--------------Reports---------------");
-
-            foreach (string str in _dbEngineObject.Reports)
-            {
-                ctrl.AppendText(Environment.NewLine + str);
-            }
-
-            ctrl.AppendText(Environment.NewLine + "--------------Queries---------------");
-
-            foreach (string str in _dbEngineObject.Queries)
-            {
-                ctrl.AppendText(Environment.NewLine + str);
-            }
-            ctrl.AppendText(Environment.NewLine + "--------------Macros---------------");
-
-            foreach (string str in _dbEngineObject.Macros)
-            {
-                ctrl.AppendText(Environment.NewLine + str);
-            }
+            gvDestination.DataSource = destinationAnalysis;
+            gvDestination.Columns[2].Visible = false;
+            gvDestination.Columns[3].Visible = false;
+          
         }
 
         private void btnSourceFile_Click(object sender, EventArgs e)
@@ -91,7 +83,7 @@ namespace MSAccessMigration
             }
         }
 
-        private async Task Progress()
+        private async Task<bool> Progress()
         {
             migrationProgressBar.Maximum = 100;
             migrationProgressBar.Minimum = 0;
@@ -106,73 +98,34 @@ namespace MSAccessMigration
             // Run operation in another thread
             //  await Task.Run(() => DoWork(progress));
             var resultTask = await Task.Run(() => _migrationManager.TransferAccessDB(txtSourceFile.Text, txtDestinationFile.Text, _sqlmigrationTables, progress));
-                            
-  
+
+            return resultTask;
            
-            if (resultTask)
+         /*   if (resultTask)
             {
                 MessageBox.Show("Done!");
             }
-
+            */
 
         }
 
         private void btnAnalyse_Click(object sender, EventArgs e)
-        {     
-                     
+        {
+            Cursor.Current = Cursors.WaitCursor;        
             _dbEngineObject = _migrationManager.AnalyseAccessDB(txtSourceFile.Text);
 
-     //    var strg =   Utility.FormatAnalysis(_dbEngineObject);
+            var strg =   Utility.FormatAnalysis(_dbEngineObject);
 
-          sourceText.AppendText("Source DBEngine Analysis");
-
-            sourceText.AppendText(Environment.NewLine + "--------------Local Tables---------------");
-            if (_dbEngineObject.Tables.Exists(t=>t.TableType=="Internal"))
-                       {
-                foreach (TableInfo tbl in _dbEngineObject.Tables.FindAll(t=>t.TableType=="Internal"))
-                {
-                    sourceText.AppendText(Environment.NewLine + tbl.TableName);
-                }
-            }
-
-            sourceText.AppendText(Environment.NewLine + "--------------Linked Tables---------------");
-            if (_dbEngineObject.Tables.Exists(t => t.TableType == "External"))
-            {
-                foreach (TableInfo tbl in _dbEngineObject.Tables.FindAll(t => t.TableType == "External"))
-                {
-                    sourceText.AppendText(Environment.NewLine + tbl.TableName);
-                    _sqlmigrationTables.Add(tbl.TableName);
-                }
-            }
-            sourceText.AppendText(Environment.NewLine + "--------------Forms---------------");
-            if (_dbEngineObject.Forms != null)
-            {
-                foreach (string str in _dbEngineObject.Forms)
-                {
-                    sourceText.AppendText(Environment.NewLine + str);
-                }
-            }
-
-            sourceText.AppendText(Environment.NewLine + "--------------Reports---------------");
-            if (_dbEngineObject.Reports != null)
-            {
-                foreach (string str in _dbEngineObject.Reports)
-                {
-                    sourceText.AppendText(Environment.NewLine + str);
-                }
-            }
-
-            sourceText.AppendText(Environment.NewLine + "--------------Macros---------------");
-            if (_dbEngineObject.Macros != null)
-            {
-                foreach (string str in _dbEngineObject.Macros)
-                {
-                    sourceText.AppendText(Environment.NewLine + str);
-                }
-            }
-
+            sourceText.AppendText("Source DBEngine Analysis"+Environment.NewLine);
+            sourceText.AppendText(strg);
+            var analysisList =  Utility.DeepCopy(Utility.GVAccessAnalysisInfo);
+            gvAnalysis.DataSource = analysisList;
+            gvAnalysis.Refresh();
+         
+           
             btnMigrate.Enabled = true;
             chkSQLMigration.Enabled = true;
+            Cursor.Current = Cursors.Arrow;
         }
 
       
@@ -220,6 +173,16 @@ namespace MSAccessMigration
         private void ClearProcess_Click(object sender, EventArgs e)
         {
             KillProcess();
+        }
+
+        private void btnRefresh_Click(object sender, EventArgs e)
+        {
+            txtDestinationFile.Text = string.Empty;
+            txtSourceFile.Text = string.Empty;
+            gvAnalysis.DataSource = null;
+            sourceText.Text = string.Empty;
+            destinationText.Text = string.Empty;
+            gvDestination.DataSource = null;
         }
     }
 }

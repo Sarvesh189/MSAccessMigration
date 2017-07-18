@@ -11,7 +11,7 @@ namespace MSAccessMigrationLibrary
         {
             DBEngineObject AnalyseAccessDB(string accessDBfileName);
             bool TransferAccessDB(string sourceDBFile, string destinationDBFile, List<string> tables, IProgress<int> progress);
-
-        }
+         IMSAccessTransfer MSAccessTransfer { get; }
+    }
     }
 

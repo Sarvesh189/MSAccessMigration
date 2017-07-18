@@ -47,8 +47,13 @@
             this.chkSQLMigration = new System.Windows.Forms.CheckBox();
             this.PopupMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.ClearProcess = new System.Windows.Forms.ToolStripMenuItem();
+            this.gvAnalysis = new System.Windows.Forms.DataGridView();
+            this.btnRefresh = new System.Windows.Forms.Button();
+            this.gvDestination = new System.Windows.Forms.DataGridView();
             this.FileGroup.SuspendLayout();
             this.PopupMenu.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gvAnalysis)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvDestination)).BeginInit();
             this.SuspendLayout();
             // 
             // btnMigrate
@@ -64,9 +69,9 @@
             // 
             // sourceText
             // 
-            this.sourceText.Location = new System.Drawing.Point(45, 301);
+            this.sourceText.Location = new System.Drawing.Point(41, 298);
             this.sourceText.Name = "sourceText";
-            this.sourceText.Size = new System.Drawing.Size(455, 368);
+            this.sourceText.Size = new System.Drawing.Size(693, 200);
             this.sourceText.TabIndex = 1;
             this.sourceText.Text = "";
             // 
@@ -162,9 +167,9 @@
             // 
             // destinationText
             // 
-            this.destinationText.Location = new System.Drawing.Point(525, 301);
+            this.destinationText.Location = new System.Drawing.Point(870, 298);
             this.destinationText.Name = "destinationText";
-            this.destinationText.Size = new System.Drawing.Size(451, 368);
+            this.destinationText.Size = new System.Drawing.Size(684, 200);
             this.destinationText.TabIndex = 6;
             this.destinationText.Text = "";
             // 
@@ -180,11 +185,11 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(566, 274);
+            this.label4.Location = new System.Drawing.Point(866, 275);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(90, 20);
+            this.label4.Size = new System.Drawing.Size(143, 20);
             this.label4.TabIndex = 8;
-            this.label4.Text = "Destination";
+            this.label4.Text = "Destination/Report";
             // 
             // chkSQLMigration
             // 
@@ -214,12 +219,47 @@
             this.ClearProcess.Text = "Clear Access Process";
             this.ClearProcess.Click += new System.EventHandler(this.ClearProcess_Click);
             // 
+            // gvAnalysis
+            // 
+            this.gvAnalysis.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.gvAnalysis.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.gvAnalysis.Location = new System.Drawing.Point(41, 514);
+            this.gvAnalysis.MultiSelect = false;
+            this.gvAnalysis.Name = "gvAnalysis";
+            this.gvAnalysis.ReadOnly = true;
+            this.gvAnalysis.RowTemplate.Height = 28;
+            this.gvAnalysis.Size = new System.Drawing.Size(693, 358);
+            this.gvAnalysis.TabIndex = 10;
+            // 
+            // btnRefresh
+            // 
+            this.btnRefresh.Location = new System.Drawing.Point(563, 160);
+            this.btnRefresh.Name = "btnRefresh";
+            this.btnRefresh.Size = new System.Drawing.Size(108, 45);
+            this.btnRefresh.TabIndex = 11;
+            this.btnRefresh.Text = "Refresh";
+            this.btnRefresh.UseVisualStyleBackColor = true;
+            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
+            // 
+            // gvDestination
+            // 
+            this.gvDestination.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.gvDestination.Location = new System.Drawing.Point(870, 514);
+            this.gvDestination.Name = "gvDestination";
+            this.gvDestination.ReadOnly = true;
+            this.gvDestination.RowTemplate.Height = 28;
+            this.gvDestination.Size = new System.Drawing.Size(684, 358);
+            this.gvDestination.TabIndex = 12;
+            // 
             // frmMSAccessMigration
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(1754, 758);
+            this.ClientSize = new System.Drawing.Size(1741, 903);
+            this.Controls.Add(this.gvDestination);
+            this.Controls.Add(this.btnRefresh);
+            this.Controls.Add(this.gvAnalysis);
             this.Controls.Add(this.chkSQLMigration);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
@@ -231,9 +271,12 @@
             this.Controls.Add(this.btnMigrate);
             this.Name = "frmMSAccessMigration";
             this.Text = "MSAccessMigration";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FileGroup.ResumeLayout(false);
             this.FileGroup.PerformLayout();
             this.PopupMenu.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.gvAnalysis)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvDestination)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -259,6 +302,9 @@
         private System.Windows.Forms.CheckBox chkSQLMigration;
         private System.Windows.Forms.ContextMenuStrip PopupMenu;
         private System.Windows.Forms.ToolStripMenuItem ClearProcess;
+        private System.Windows.Forms.DataGridView gvAnalysis;
+        private System.Windows.Forms.Button btnRefresh;
+        private System.Windows.Forms.DataGridView gvDestination;
     }
 }
 

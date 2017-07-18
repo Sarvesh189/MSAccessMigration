@@ -16,6 +16,7 @@ namespace MSAccessMigrationLibrary
         IMSAccessAnalysis _msaccessAnalysis;
         IMSAccessTransfer _msaccessTransfer;
         Access.Application _application;
+
         public MigrationManager(IMSAccessAnalysis msaccessAnalysis, IMSAccessTransfer msaccessTransfer)
         {
             _dbEngineobject = new DBEngineObject();
@@ -24,6 +25,7 @@ namespace MSAccessMigrationLibrary
             _application = new Access.Application();
 
         }
+        public IMSAccessTransfer MSAccessTransfer { get { return _msaccessTransfer; } }
 
         public DBEngineObject AnalyseAccessDB(string accessDBfileName)
         {
@@ -94,13 +96,6 @@ namespace MSAccessMigrationLibrary
 
             return _prps;
         }
-
-
-
-
-
-
-
 
     }
 }

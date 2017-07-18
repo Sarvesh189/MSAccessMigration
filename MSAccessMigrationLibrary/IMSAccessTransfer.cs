@@ -19,5 +19,6 @@ namespace MSAccessMigrationLibrary
         void TransferQueries(string sourceDBFile, string destinationDBFile, IProgress<int> progress);
 
         void TransferMacros(string sourceDBFile, string destinationDBFile, IProgress<int> progress);
+         event EventHandler<ItemTransferEventArg> ItemTransferred;
     }
 }
