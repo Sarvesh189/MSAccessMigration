@@ -198,5 +198,34 @@ namespace MSAccessMigrationLibrary
             }
             return tables;
         }
+
+        public List<string> GetModules(string accessDBfileName)
+        {
+            Access.Application _application = null;
+            var _modules = new List<string>();
+            try
+            {
+                _application = new Access.Application();
+
+                _application.OpenCurrentDatabase(accessDBfileName, true, "");
+
+                Access.AllObjects modules = _application.CurrentProject.AllModules;
+
+                foreach (var mdl in modules)
+                {
+                    var typedesc = TypeDescriptor.GetProperties(mdl).Find("Name", true);
+
+                    _modules.Add(typedesc.GetValue(mdl).ToString());
+                }
+
+                _application.CloseCurrentDatabase();
+            }
+            catch (Exception ex)
+            {
+                Utility.ExceptionList.Add(ex);
+            }
+
+            return _modules;
+        }
     }
 }

@@ -183,6 +183,7 @@ namespace MSAccessMigration
             sourceText.Text = string.Empty;
             destinationText.Text = string.Empty;
             gvDestination.DataSource = null;
+            KillProcess();
         }
     }
 }

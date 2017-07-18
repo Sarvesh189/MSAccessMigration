@@ -17,6 +17,7 @@ namespace MSAccessMigrationLibrary
 
         List<string> TransferObjectToSQL(List<string> tables, string sourceAccessfile);
         void TransferQueries(string sourceDBFile, string destinationDBFile, IProgress<int> progress);
+        void TransferModules(string sourceDBFile, string destinationDBFile, IProgress<int> progress);
 
         void TransferMacros(string sourceDBFile, string destinationDBFile, IProgress<int> progress);
          event EventHandler<ItemTransferEventArg> ItemTransferred;

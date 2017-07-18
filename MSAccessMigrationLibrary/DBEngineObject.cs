@@ -15,6 +15,8 @@
             public List<string> Macros { get; set; }
 
             public List<string> Reports { get; set; }
+
+            public List<string> Modules { get; set; }
         }
     }
 

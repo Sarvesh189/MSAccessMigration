@@ -182,6 +182,26 @@ namespace MSAccessMigrationLibrary
                 Utility.ExceptionList.Add(ex);
             }
         }
+
+        public void TransferModules(string sourceDBFile, string destinationDBFile, IProgress<int> progress)
+        {
+            try
+            {
+                _application.OpenCurrentDatabase(sourceDBFile, false, "");
+                Access.DoCmd _docmd = _application.DoCmd;
+                for (int index = 0; index < _dbEngineObject.Modules.Count; index++)
+                {
+                    _docmd.CopyObject(destinationDBFile, _dbEngineObject.Modules[index], Access.AcObjectType.acModule, _dbEngineObject.Modules[index]);
+                    progress.Report((index + 1) * 100 / _dbEngineObject.Modules.Count);
+                    OnItemTransferred(new ItemTransferEventArg() { ItemName = _dbEngineObject.Modules[index], ItemType = "Module" });
+                }
+                _application.CloseCurrentDatabase();
+            }
+            catch (Exception ex)
+            {
+                Utility.ExceptionList.Add(ex);
+            }
+        }
     }
 
     public class ItemTransferEventArg : EventArgs

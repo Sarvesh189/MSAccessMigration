@@ -15,5 +15,7 @@ namespace MSAccessMigrationLibrary
         List<string> GetQueries(string accessDBfileName);
 
         List<string> GetMacros(string accessDBfileName);
+
+        List<string> GetModules(string accessDBfileName);
     }
 }
