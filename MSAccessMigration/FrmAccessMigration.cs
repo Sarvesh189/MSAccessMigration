@@ -90,10 +90,12 @@ namespace MSAccessMigration
 
         private async Task<bool> Progress()
         {
+            Progress<int> progress = null;
             migrationProgressBar.Maximum = 100;
             migrationProgressBar.Minimum = 0;
             migrationProgressBar.Step = 1;
-            var progress = new Progress<int>(v =>
+            migrationProgressBar.PerformStep();
+            progress = new Progress<int>(v =>
             {
                 // This lambda is executed in context of UI thread,
                 // so it can safely update form controls
@@ -103,7 +105,7 @@ namespace MSAccessMigration
             // Run operation in another thread
             //  await Task.Run(() => DoWork(progress));
             var resultTask = await Task.Run(() => _migrationManager.TransferAccessDB(txtSourceFile.Text, txtDestinationFile.Text, _sqlmigrationTables, progress));
-
+            
             return resultTask;
            
          /*   if (resultTask)
