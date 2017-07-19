@@ -36,6 +36,7 @@ namespace MSAccessMigrationLibrary
         {
             try
             {
+                AppLogManager.LogInfo("Form transfer started");
                 _application.OpenCurrentDatabase(sourceDBFile, false, "");
                 Access.DoCmd _docmd = _application.DoCmd;
                 for (int index = 0; index < _dbEngineObject.Forms.Count; index++)
@@ -43,13 +44,14 @@ namespace MSAccessMigrationLibrary
                     _docmd.CopyObject(destinationDBFile, _dbEngineObject.Forms[index], Access.AcObjectType.acForm, _dbEngineObject.Forms[index]);
                     progress.Report((index + 1) * 100 / _dbEngineObject.Forms.Count);
                     OnItemTransferred(new ItemTransferEventArg() { ItemName = _dbEngineObject.Forms[index], ItemType = "Form" });
-
+                    AppLogManager.LogInfo(string.Format("{0} transferred", _dbEngineObject.Forms[index]));
                 }
+                AppLogManager.LogInfo("Form transfer done");
                 _application.CloseCurrentDatabase();
             }
             catch (Exception ex)
             {
-                Utility.ExceptionList.Add(ex);
+                AppLogManager.LogError(ex); ;
             }
         }
 
@@ -58,6 +60,7 @@ namespace MSAccessMigrationLibrary
             List<string> _prps = new List<string>();
             try
             {
+                AppLogManager.LogInfo("Local Table transfer started");
                 Access.Application _application = new Access.Application();
                 _application.OpenCurrentDatabase(sourceDBFile, false, "");
                 Access.DoCmd _docmd = _application.DoCmd;
@@ -70,10 +73,12 @@ namespace MSAccessMigrationLibrary
                     progress.Report((index + 1) * 100 / internalTables.Count);
                     _prps.Add(internalTables[index].TableName);
                     OnItemTransferred(new ItemTransferEventArg() { ItemName = internalTables[index].TableName, ItemType = "Table" });
+                    AppLogManager.LogInfo(string.Format("{0} transferred", internalTables[index].TableName));
                 }
+                AppLogManager.LogInfo("Local Table transfer done");
                 _application.CloseCurrentDatabase();
             }
-            catch(Exception ex) { Utility.ExceptionList.Add(ex); }
+            catch(Exception ex) { AppLogManager.LogError(ex); }
             return _prps;
         }
 
@@ -81,6 +86,7 @@ namespace MSAccessMigrationLibrary
         {
             try
             {
+                AppLogManager.LogInfo("Queries transfer started");
                 _application.OpenCurrentDatabase(sourceDBFile, false, "");
                 Access.DoCmd _docmd = _application.DoCmd;
                 for (int index = 0; index < _dbEngineObject.Queries.Count; index++)
@@ -88,29 +94,33 @@ namespace MSAccessMigrationLibrary
                     _docmd.CopyObject(destinationDBFile, _dbEngineObject.Queries[index], Access.AcObjectType.acQuery, _dbEngineObject.Queries[index]);
                     progress.Report((index + 1) * 100 / _dbEngineObject.Queries.Count);
                     OnItemTransferred(new ItemTransferEventArg() { ItemName = _dbEngineObject.Queries[index], ItemType = "Query" });
-
+                    AppLogManager.LogInfo(_dbEngineObject.Queries[index] +" transferred");
                 }
+                AppLogManager.LogInfo("Queries transfer done");
                 _application.CloseCurrentDatabase();
             }
             catch (Exception ex)
-            { Utility.ExceptionList.Add(ex); }
+            { AppLogManager.LogError(ex); }
         }
 
         public void TransferReport(string sourceDBFile, string destinationDBFile, IProgress<int> progress)
         {
-            try { 
-            _application.OpenCurrentDatabase(sourceDBFile, false, "");
+            try {
+                AppLogManager.LogInfo("Reports transfer started");
+                _application.OpenCurrentDatabase(sourceDBFile, false, "");
             Access.DoCmd _docmd = _application.DoCmd;
             for (int index = 0; index < _dbEngineObject.Reports.Count; index++)
             {
                 _docmd.CopyObject(destinationDBFile, _dbEngineObject.Reports[index], Access.AcObjectType.acReport, _dbEngineObject.Reports[index]);
                 progress.Report((index + 1) * 100 / _dbEngineObject.Reports.Count);
                 OnItemTransferred(new ItemTransferEventArg() { ItemName = _dbEngineObject.Reports[index], ItemType = "Report" });
-            }
+                    AppLogManager.LogInfo(_dbEngineObject.Reports[index]+" transferred");
+                }
             _application.CloseCurrentDatabase();
+                AppLogManager.LogInfo("Reports transfer done");
             }
             catch (Exception ex)
-            { Utility.ExceptionList.Add(ex); }
+            { AppLogManager.LogError(ex); }
         }
 
         public List<string> TransferObjectToSQL(List<string> tables, string sourceAccessfile)
@@ -118,7 +128,7 @@ namespace MSAccessMigrationLibrary
             List<string> _prps = new List<string>();
             try
             {
-               
+                AppLogManager.LogInfo("Table transfer to SQL started");
                 string strConnect = ConfigurationManager.AppSettings["SQLConnection"].ToString();
                 Access.DoCmd _docmd = _application.DoCmd;
                 foreach (var table in tables)
@@ -153,11 +163,13 @@ namespace MSAccessMigrationLibrary
                     _db.TableDefs.Append(newtbl);
 
                     _db.Close();
+                    AppLogManager.LogInfo(table +" transferred");
                 }
+                AppLogManager.LogInfo("Table transfer to SQL done");
             }
             catch (Exception ex)
             {
-                Utility.ExceptionList.Add(ex);
+                AppLogManager.LogError(ex);
             }
 
             return _prps;
@@ -167,6 +179,7 @@ namespace MSAccessMigrationLibrary
         {
             try
             {
+                AppLogManager.LogInfo("Macros transfer started");
                 _application.OpenCurrentDatabase(sourceDBFile, false, "");
                 Access.DoCmd _docmd = _application.DoCmd;
                 for (int index = 0; index < _dbEngineObject.Macros.Count; index++)
@@ -174,12 +187,14 @@ namespace MSAccessMigrationLibrary
                     _docmd.CopyObject(destinationDBFile, _dbEngineObject.Macros[index], Access.AcObjectType.acMacro, _dbEngineObject.Macros[index]);
                     progress.Report((index + 1) * 100 / _dbEngineObject.Macros.Count);
                     OnItemTransferred(new ItemTransferEventArg() { ItemName = _dbEngineObject.Macros[index], ItemType = "Macro" });
+                    AppLogManager.LogInfo(_dbEngineObject.Macros[index]+  " transferred");
                 }
                 _application.CloseCurrentDatabase();
+                AppLogManager.LogInfo("Macros transfer done");
             }
             catch (Exception ex)
             {
-                Utility.ExceptionList.Add(ex);
+                AppLogManager.LogError(ex);
             }
         }
 
@@ -187,6 +202,8 @@ namespace MSAccessMigrationLibrary
         {
             try
             {
+                AppLogManager.LogInfo("Module transfer started");
+               
                 _application.OpenCurrentDatabase(sourceDBFile, false, "");
                 Access.DoCmd _docmd = _application.DoCmd;
                 for (int index = 0; index < _dbEngineObject.Modules.Count; index++)
@@ -194,12 +211,14 @@ namespace MSAccessMigrationLibrary
                     _docmd.CopyObject(destinationDBFile, _dbEngineObject.Modules[index], Access.AcObjectType.acModule, _dbEngineObject.Modules[index]);
                     progress.Report((index + 1) * 100 / _dbEngineObject.Modules.Count);
                     OnItemTransferred(new ItemTransferEventArg() { ItemName = _dbEngineObject.Modules[index], ItemType = "Module" });
+                    AppLogManager.LogInfo(_dbEngineObject.Modules[index] + "transferred");
                 }
                 _application.CloseCurrentDatabase();
+                AppLogManager.LogInfo("Module transfer done");
             }
             catch (Exception ex)
             {
-                Utility.ExceptionList.Add(ex);
+                AppLogManager.LogError(ex);
             }
         }
     }

@@ -35,8 +35,17 @@ namespace MSAccessMigrationLibrary
                         formattedString.Append("    "+tables.Count);
                         foreach (var table in tables)
                         {
-                            _gvAccessAnalysis.Add(new GVAccessAnalysis() { AccessObject = table.TableName, ObjectType = property.Name, Remarks = table.TableType, IsMigrated = false });
-                           
+                            var gvAccessAnalysis = new GVAccessAnalysis()
+                            {
+                                AccessObject = table.TableName,
+                                ObjectType = property.Name,
+                                Remarks = table.TableType,
+                                IsMigrated = false
+                            };
+
+                            _gvAccessAnalysis.Add(gvAccessAnalysis);
+                            AppLogManager.LogInfo(gvAccessAnalysis.ToString());
+                            
                         }
 
                     }
@@ -48,7 +57,10 @@ namespace MSAccessMigrationLibrary
                         formattedString.Append("    " + items.Count);
                         foreach (var item in items)
                         {
-                            _gvAccessAnalysis.Add(new GVAccessAnalysis() { AccessObject = item, ObjectType = property.Name, Remarks = "-", IsMigrated = false });
+                            var gvAccessAnalysis = new GVAccessAnalysis() { AccessObject = item, ObjectType = property.Name, Remarks = "-", IsMigrated = false };
+
+                            _gvAccessAnalysis.Add(gvAccessAnalysis);
+                            AppLogManager.LogInfo(gvAccessAnalysis.ToString());
                            
                         }
 
@@ -137,6 +149,11 @@ namespace MSAccessMigrationLibrary
         public string Remarks { get; set; }
 
         public bool IsMigrated { get; set; }
+
+        public override string ToString()
+        {
+           return string.Format("Name : {0} \t Type: {1} \t Remarks: {2}", AccessObject, ObjectType, Remarks);
+        }
     }
 
    

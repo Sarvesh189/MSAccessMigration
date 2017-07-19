@@ -39,17 +39,23 @@ namespace MSAccessMigration
 
         private async void btnMigration_Click(object sender, EventArgs e)
         {
-            if (!string.IsNullOrEmpty(txtDestinationFile.Text.Trim()))
+            try
             {
-                var result = await Progress();
-                await AnalyseResult(txtDestinationFile.Text, destinationText);
-                if (result)
+                if (!string.IsNullOrEmpty(txtDestinationFile.Text.Trim()))
                 {
-                    MessageBox.Show("Done!");
+                    var result = await Progress();
+                    await AnalyseResult(txtDestinationFile.Text, destinationText);
+                    if (result)
+                    {
+                        MessageBox.Show("Done!");
+                    }
                 }
+                else { MessageBox.Show("Please select destination file."); }
             }
-            else { MessageBox.Show("Please select destination file."); }
-          
+            catch (Exception ex)
+            {
+                AppLogManager.LogError(ex);
+            }
         }
 
         private async Task AnalyseResult(string file,RichTextBox ctrl)
@@ -118,28 +124,35 @@ namespace MSAccessMigration
 
         private void btnAnalyse_Click(object sender, EventArgs e)
         {
-            if (!string.IsNullOrEmpty(txtSourceFile.Text.Trim()))
+            try
             {
-                Cursor.Current = Cursors.WaitCursor;
-                _dbEngineObject = _migrationManager.AnalyseAccessDB(txtSourceFile.Text);
+                AppLogManager.LogInfo(string.Format("{0}-----------------------------------", Environment.NewLine));
+                AppLogManager.LogInfo(string.Format("{0} analysis started", txtSourceFile.Text));
+                if (!string.IsNullOrEmpty(txtSourceFile.Text.Trim()))
+                {
+                    Cursor.Current = Cursors.WaitCursor;
+                    _dbEngineObject = _migrationManager.AnalyseAccessDB(txtSourceFile.Text);
+                   
+                    var strg = Utility.FormatAnalysis(_dbEngineObject);
 
-                var strg = Utility.FormatAnalysis(_dbEngineObject);
-
-                sourceText.AppendText("Source DBEngine Analysis" + Environment.NewLine);
-                sourceText.AppendText(strg);
-                var analysisList = Utility.DeepCopy(Utility.GVAccessAnalysisInfo);
-                gvAnalysis.DataSource = analysisList;
-                gvAnalysis.Refresh();
+                    sourceText.AppendText("Source DBEngine Analysis" + Environment.NewLine);
+                    sourceText.AppendText(strg);
+                    var analysisList = Utility.DeepCopy(Utility.GVAccessAnalysisInfo);
+                    gvAnalysis.DataSource = analysisList;
+                    gvAnalysis.Refresh();
 
 
-                btnMigrate.Enabled = true;
-                chkSQLMigration.Enabled = true;
-                Cursor.Current = Cursors.Arrow;
+                    btnMigrate.Enabled = true;
+                    chkSQLMigration.Enabled = true;
+                    Cursor.Current = Cursors.Arrow;
+                }
+                else
+                {
+                    MessageBox.Show("Please select an MS Access file");
+                }
             }
-            else
-            {
-                MessageBox.Show("Please select an MS Access file");
-            }
+            catch (Exception ex)
+            { AppLogManager.LogError(ex); }
         }
 
       
@@ -206,6 +219,12 @@ namespace MSAccessMigration
             migrationProgressBar.Value = 0;
 
             KillProcess();
+        }
+
+        private void btnLog_Click(object sender, EventArgs e)
+        {
+            var frmLog = new LogForm();
+            frmLog.Show();
         }
     }
 }

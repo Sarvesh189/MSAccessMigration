@@ -5,3 +5,5 @@ D:\Fifththird\MSAccessMigrationApplication\MSAccessMigration\MSAccessMigrationLi
 D:\Fifththird\MSAccessMigrationApplication\MSAccessMigration\MSAccessMigrationLibrary\obj\Debug\MSAccessMigrationLibrary.dll
 D:\Fifththird\MSAccessMigrationApplication\MSAccessMigration\MSAccessMigrationLibrary\obj\Debug\MSAccessMigrationLibrary.pdb
 D:\Fifththird\MSAccessMigrationApplication\MSAccessMigration\MSAccessMigrationLibrary\obj\Debug\MSAccessMigrationLibrary.csprojResolveAssemblyReference.cache
+D:\Fifththird\MSAccessMigrationApplication\MSAccessMigration\MSAccessMigrationLibrary\bin\Debug\NLog.dll
+D:\Fifththird\MSAccessMigrationApplication\MSAccessMigration\MSAccessMigrationLibrary\bin\Debug\NLog.xml

@@ -13,3 +13,6 @@ D:\Fifththird\MSAccessMigrationApplication\MSAccessMigration\MSAccessMigration\b
 D:\Fifththird\MSAccessMigrationApplication\MSAccessMigration\MSAccessMigration\bin\Debug\Autofac.xml
 D:\Fifththird\MSAccessMigrationApplication\MSAccessMigration\MSAccessMigration\bin\Debug\MSAccessMigrationLibrary.dll
 D:\Fifththird\MSAccessMigrationApplication\MSAccessMigration\MSAccessMigration\bin\Debug\MSAccessMigrationLibrary.pdb
+D:\Fifththird\MSAccessMigrationApplication\MSAccessMigration\MSAccessMigration\bin\Debug\NLog.dll
+D:\Fifththird\MSAccessMigrationApplication\MSAccessMigration\MSAccessMigration\bin\Debug\NLog.xml
+D:\Fifththird\MSAccessMigrationApplication\MSAccessMigration\MSAccessMigration\obj\Debug\MSAccessMigration.LogForm.resources

@@ -29,6 +29,7 @@ namespace MSAccessMigrationLibrary
 
         public DBEngineObject AnalyseAccessDB(string accessDBfileName)
         {
+            AppLogManager.LogInfo(string.Format("Analysis of {0}", accessDBfileName));
 
             _dbEngineobject.Forms = _msaccessAnalysis.GetFormNames(accessDBfileName);
             _dbEngineobject.Tables = _msaccessAnalysis.GetTablesName(accessDBfileName);
@@ -43,15 +44,17 @@ namespace MSAccessMigrationLibrary
 
         public bool TransferAccessDB(string sourceDBFile, string destinationDBFile, List<string> tables, IProgress<int> progress)
         {
+            AppLogManager.LogInfo(string.Format("Transformation started from {0} to {1}",sourceDBFile,destinationDBFile));
             _msaccessTransfer.DBEngineObject = _dbEngineobject;
             _msaccessTransfer.TransferInternalTables(sourceDBFile, destinationDBFile, progress);
             _msaccessTransfer.TransferForm(sourceDBFile, destinationDBFile, progress);
             if (tables != null && tables.Count > 0)
-                TransferObjectToSQL(tables, destinationDBFile);
+                _msaccessTransfer.TransferObjectToSQL(tables, destinationDBFile);
             _msaccessTransfer.TransferReport(sourceDBFile, destinationDBFile, progress);
             _msaccessTransfer.TransferQueries(sourceDBFile, destinationDBFile, progress);
             _msaccessTransfer.TransferMacros(sourceDBFile, destinationDBFile, progress);
             _msaccessTransfer.TransferModules(sourceDBFile, destinationDBFile, progress);
+            AppLogManager.LogInfo("Transformation Done");
             return true;
         }
 
@@ -59,6 +62,7 @@ namespace MSAccessMigrationLibrary
 
         public List<string> TransferObjectToSQL(List<string> tables, string sourceAccessfile)
         {
+            
             List<string> _prps = new List<string>();
             string strConnect = ConfigurationManager.AppSettings["SQLConnection"].ToString();
             Access.DoCmd _docmd = _application.DoCmd;

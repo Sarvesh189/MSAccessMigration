@@ -16,11 +16,19 @@ namespace MSAccessMigration
         /// </summary>
         [STAThread]
         static void Main()
-        {            
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            RegisterComponent.Register();
-            Application.Run(new frmMSAccessMigration());
+        {
+            try
+            {
+                Application.EnableVisualStyles();
+                Application.SetCompatibleTextRenderingDefault(false);
+                RegisterComponent.Register();
+                Application.Run(new frmMSAccessMigration());
+            }
+            catch (Exception ex)
+            {
+                AppLogManager.LogError(ex);
+            }
+          
         }
     }
 }

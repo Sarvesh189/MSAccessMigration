@@ -43,7 +43,9 @@ namespace MSAccessMigrationLibrary
                 _application.CloseCurrentDatabase();
             }
             catch (Exception ex)
-            { Utility.ExceptionList.Add(ex); }
+            {
+                AppLogManager.LogError(ex);
+            }
             return frmNames;
         }
 
@@ -68,7 +70,7 @@ namespace MSAccessMigrationLibrary
             }
             catch (Exception ex)
             {
-                Utility.ExceptionList.Add(ex);
+                AppLogManager.LogError(ex);
             }
             finally
             {
@@ -106,7 +108,7 @@ namespace MSAccessMigrationLibrary
             }
             catch (Exception ex)
             {
-                Utility.ExceptionList.Add(ex);                
+                AppLogManager.LogError(ex);
             }
         
             return reportsName;
@@ -136,7 +138,7 @@ namespace MSAccessMigrationLibrary
             }
             catch (Exception ex)
             {
-                Utility.ExceptionList.Add(ex);
+                AppLogManager.LogError(ex);
             }
 
             return macrosname;
@@ -189,7 +191,7 @@ namespace MSAccessMigrationLibrary
             }
             catch (Exception ex)
             {
-                Utility.ExceptionList.Add(ex);
+                AppLogManager.LogError(ex);
             }
             finally
             {
@@ -222,7 +224,7 @@ namespace MSAccessMigrationLibrary
             }
             catch (Exception ex)
             {
-                Utility.ExceptionList.Add(ex);
+                AppLogManager.LogError(ex);
             }
 
             return _modules;
