@@ -127,7 +127,6 @@
             // 
             this.txtDestinationFile.Location = new System.Drawing.Point(220, 84);
             this.txtDestinationFile.Name = "txtDestinationFile";
-            this.txtDestinationFile.ReadOnly = true;
             this.txtDestinationFile.Size = new System.Drawing.Size(571, 26);
             this.txtDestinationFile.TabIndex = 5;
             // 

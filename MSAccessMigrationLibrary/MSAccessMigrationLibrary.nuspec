@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>MSAccess.Migration.MigrationLibrary</id>
+    <version>1.0.0.0</version>
+    <title>MSAccessMigrationLibrary</title>
+    <authors>sarvesh.upadhyay</authors>
+    <owners>sarvesh.upadhyay</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>MS Access Migration Library</description>
+    <releaseNotes>MS Access Migration Library</releaseNotes>
+    <copyright>Copyright 2017</copyright>
+    <tags>Access Migration</tags>
+  </metadata>
+</package>

@@ -124,6 +124,7 @@ namespace MSAccessMigration
 
         private void btnAnalyse_Click(object sender, EventArgs e)
         {
+           
             try
             {
                 AppLogManager.LogInfo(string.Format("{0}-----------------------------------", Environment.NewLine));
@@ -134,7 +135,8 @@ namespace MSAccessMigration
                     _dbEngineObject = _migrationManager.AnalyseAccessDB(txtSourceFile.Text);
                    
                     var strg = Utility.FormatAnalysis(_dbEngineObject);
-
+                    
+                    sourceText.Clear();
                     sourceText.AppendText("Source DBEngine Analysis" + Environment.NewLine);
                     sourceText.AppendText(strg);
                     var analysisList = Utility.DeepCopy(Utility.GVAccessAnalysisInfo);
@@ -211,6 +213,10 @@ namespace MSAccessMigration
         }
 
         private void btnRefresh_Click(object sender, EventArgs e)
+        {
+            RefreshAnalysis();
+        }
+        private void RefreshAnalysis()
         {
             txtDestinationFile.Text = string.Empty;
             txtSourceFile.Text = string.Empty;

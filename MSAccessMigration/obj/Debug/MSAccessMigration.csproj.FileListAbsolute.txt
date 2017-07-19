@@ -4,7 +4,6 @@ D:\Fifththird\MSAccessMigrationApplication\MSAccessMigration\MSAccessMigration\b
 D:\Fifththird\MSAccessMigrationApplication\MSAccessMigration\MSAccessMigration\bin\Debug\Autofac.dll
 D:\Fifththird\MSAccessMigrationApplication\MSAccessMigration\MSAccessMigration\bin\Debug\MSAccessMigrationLibrary.dll
 D:\Fifththird\MSAccessMigrationApplication\MSAccessMigration\MSAccessMigration\bin\Debug\NLog.dll
-D:\Fifththird\MSAccessMigrationApplication\MSAccessMigration\MSAccessMigration\bin\Debug\MSAccessMigrationLibrary.pdb
 D:\Fifththird\MSAccessMigrationApplication\MSAccessMigration\MSAccessMigration\bin\Debug\Autofac.xml
 D:\Fifththird\MSAccessMigrationApplication\MSAccessMigration\MSAccessMigration\bin\Debug\NLog.xml
 D:\Fifththird\MSAccessMigrationApplication\MSAccessMigration\MSAccessMigration\obj\Debug\MSAccessMigration.csprojResolveAssemblyReference.cache
@@ -18,3 +17,5 @@ D:\Fifththird\MSAccessMigrationApplication\MSAccessMigration\MSAccessMigration\o
 D:\Fifththird\MSAccessMigrationApplication\MSAccessMigration\MSAccessMigration\obj\Debug\MSAccessMigration.csproj.GenerateResource.Cache
 D:\Fifththird\MSAccessMigrationApplication\MSAccessMigration\MSAccessMigration\obj\Debug\MSAccessMigration.exe
 D:\Fifththird\MSAccessMigrationApplication\MSAccessMigration\MSAccessMigration\obj\Debug\MSAccessMigration.pdb
+D:\Fifththird\MSAccessMigrationApplication\MSAccessMigration\MSAccessMigration\obj\Debug\Interop.ADOX.dll
+D:\Fifththird\MSAccessMigrationApplication\MSAccessMigration\MSAccessMigration\bin\Debug\MSAccessMigrationLibrary.pdb
