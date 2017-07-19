@@ -22,7 +22,8 @@ namespace MSAccessMigration
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
                 RegisterComponent.Register();
-                Application.Run(new frmMSAccessMigration());
+                //    Application.Run(new frmMSAccessMigration());
+                Application.Run(new ParentForm());
             }
             catch (Exception ex)
             {

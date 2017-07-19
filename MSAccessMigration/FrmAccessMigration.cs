@@ -159,9 +159,11 @@ namespace MSAccessMigration
 
         private void chkSQLMigration_CheckedChanged(object sender, EventArgs e)
         {
+
             if (chkSQLMigration.Checked)
             {
                 SQLMigrationDialog sqlMigrationDialog = new SQLMigrationDialog();
+                sqlMigrationDialog.MdiParent = this.ParentForm;
                 List<string> tables = new List<string>();
                 _dbEngineObject.Tables.FindAll(t => t.TableType == "Internal").ForEach(t => tables.Add(t.TableName));
                 sqlMigrationDialog.TableList = tables;

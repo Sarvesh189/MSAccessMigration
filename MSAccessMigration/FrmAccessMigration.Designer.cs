@@ -50,7 +50,6 @@
             this.gvAnalysis = new System.Windows.Forms.DataGridView();
             this.btnRefresh = new System.Windows.Forms.Button();
             this.gvDestination = new System.Windows.Forms.DataGridView();
-            this.btnLog = new System.Windows.Forms.Button();
             this.FileGroup.SuspendLayout();
             this.PopupMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gvAnalysis)).BeginInit();
@@ -252,23 +251,12 @@
             this.gvDestination.Size = new System.Drawing.Size(684, 358);
             this.gvDestination.TabIndex = 12;
             // 
-            // btnLog
-            // 
-            this.btnLog.Location = new System.Drawing.Point(689, 160);
-            this.btnLog.Name = "btnLog";
-            this.btnLog.Size = new System.Drawing.Size(120, 45);
-            this.btnLog.TabIndex = 13;
-            this.btnLog.Text = "Log";
-            this.btnLog.UseVisualStyleBackColor = true;
-            this.btnLog.Click += new System.EventHandler(this.btnLog_Click);
-            // 
             // frmMSAccessMigration
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(1741, 903);
-            this.Controls.Add(this.btnLog);
             this.Controls.Add(this.gvDestination);
             this.Controls.Add(this.btnRefresh);
             this.Controls.Add(this.gvAnalysis);
@@ -317,7 +305,6 @@
         private System.Windows.Forms.DataGridView gvAnalysis;
         private System.Windows.Forms.Button btnRefresh;
         private System.Windows.Forms.DataGridView gvDestination;
-        private System.Windows.Forms.Button btnLog;
     }
 }
 

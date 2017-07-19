@@ -6,10 +6,10 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("MSAccessMigration")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Microsoft Access Migration Tool. Design and developed by Sarvesh Upadhyay")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("MSAccessMigration")]
+[assembly: AssemblyCompany("Tavant Technologies Pvt Ltd")]
+[assembly: AssemblyProduct("Microsoft Access Migration Application")]
 [assembly: AssemblyCopyright("Copyright ©  2017")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
