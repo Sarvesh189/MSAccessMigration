@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>MSAccess.Migration.MigrationLibrary</id>
-    <version>1.0.0.0</version>
+    <version>1.0.0.1</version>
     <title>MSAccessMigrationLibrary</title>
     <authors>sarvesh.upadhyay</authors>
     <owners>sarvesh.upadhyay</owners>

@@ -17,5 +17,3 @@ D:\Fifththird\MSAccessMigrationApplication\MSAccessMigration\MSAccessMigration\o
 D:\Fifththird\MSAccessMigrationApplication\MSAccessMigration\MSAccessMigration\obj\Debug\MSAccessMigration.csproj.GenerateResource.Cache
 D:\Fifththird\MSAccessMigrationApplication\MSAccessMigration\MSAccessMigration\obj\Debug\MSAccessMigration.exe
 D:\Fifththird\MSAccessMigrationApplication\MSAccessMigration\MSAccessMigration\obj\Debug\MSAccessMigration.pdb
-D:\Fifththird\MSAccessMigrationApplication\MSAccessMigration\MSAccessMigration\obj\Debug\Interop.ADOX.dll
-D:\Fifththird\MSAccessMigrationApplication\MSAccessMigration\MSAccessMigration\bin\Debug\MSAccessMigrationLibrary.pdb
