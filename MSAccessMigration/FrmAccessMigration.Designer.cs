@@ -160,7 +160,7 @@
             this.btnAnalyse.Name = "btnAnalyse";
             this.btnAnalyse.Size = new System.Drawing.Size(154, 45);
             this.btnAnalyse.TabIndex = 5;
-            this.btnAnalyse.Text = "Analyse";
+            this.btnAnalyse.Text = "Analyze";
             this.btnAnalyse.UseVisualStyleBackColor = true;
             this.btnAnalyse.Click += new System.EventHandler(this.btnAnalyse_Click);
             // 
@@ -175,18 +175,20 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(57, 275);
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(57, 271);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(60, 20);
+            this.label3.Size = new System.Drawing.Size(75, 25);
             this.label3.TabIndex = 7;
             this.label3.Text = "Source";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(866, 275);
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(866, 271);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(143, 20);
+            this.label4.Size = new System.Drawing.Size(172, 25);
             this.label4.TabIndex = 8;
             this.label4.Text = "Destination/Report";
             // 

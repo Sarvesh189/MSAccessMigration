@@ -61,5 +61,21 @@ namespace MSAccessMigration
             frmAbout.MdiParent = this;
             frmAbout.Show();
         }
+
+        private void helpToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form frmHelp = CheckFormInstance("HelpForm");
+            if (frmHelp != null)
+            {
+                frmHelp.Activate();
+            }
+            else
+            {
+                frmHelp = new HelpForm();
+                frmHelp.MdiParent = this;
+                frmHelp.Dock = DockStyle.Fill;
+                frmHelp.Show();
+            }
+        }
     }
 }

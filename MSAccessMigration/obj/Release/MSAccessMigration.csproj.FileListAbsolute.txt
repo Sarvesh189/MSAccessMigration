@@ -7,7 +7,6 @@ D:\Fifththird\MSAccessMigrationApplication\MSAccessMigration\MSAccessMigration\b
 D:\Fifththird\MSAccessMigrationApplication\MSAccessMigration\MSAccessMigration\bin\Release\NLog.dll
 D:\Fifththird\MSAccessMigrationApplication\MSAccessMigration\MSAccessMigration\bin\Release\Autofac.xml
 D:\Fifththird\MSAccessMigrationApplication\MSAccessMigration\MSAccessMigration\bin\Release\NLog.xml
-D:\Fifththird\MSAccessMigrationApplication\MSAccessMigration\MSAccessMigration\obj\Release\MSAccessMigration.csprojResolveAssemblyReference.cache
 D:\Fifththird\MSAccessMigrationApplication\MSAccessMigration\MSAccessMigration\obj\Release\MSAccessMigration.frmMSAccessMigration.resources
 D:\Fifththird\MSAccessMigrationApplication\MSAccessMigration\MSAccessMigration\obj\Release\MSAccessMigration.LogForm.resources
 D:\Fifththird\MSAccessMigrationApplication\MSAccessMigration\MSAccessMigration\obj\Release\MSAccessMigration.MSAbout.resources
@@ -17,3 +16,10 @@ D:\Fifththird\MSAccessMigrationApplication\MSAccessMigration\MSAccessMigration\o
 D:\Fifththird\MSAccessMigrationApplication\MSAccessMigration\MSAccessMigration\obj\Release\MSAccessMigration.csproj.GenerateResource.Cache
 D:\Fifththird\MSAccessMigrationApplication\MSAccessMigration\MSAccessMigration\obj\Release\MSAccessMigration.exe
 D:\Fifththird\MSAccessMigrationApplication\MSAccessMigration\MSAccessMigration\obj\Release\MSAccessMigration.pdb
+D:\Fifththird\MSAccessMigrationApplication\MSAccessMigration\MSAccessMigration\obj\Release\MSAccessMigration.csprojResolveAssemblyReference.cache
+D:\Fifththird\MSAccessMigrationApplication\MSAccessMigration\MSAccessMigration\bin\Release\MSAccessMigration.exe.manifest
+D:\Fifththird\MSAccessMigrationApplication\MSAccessMigration\MSAccessMigration\bin\Release\MSAccessMigration.application
+D:\Fifththird\MSAccessMigrationApplication\MSAccessMigration\MSAccessMigration\obj\Release\MSAccessMigration.exe.manifest
+D:\Fifththird\MSAccessMigrationApplication\MSAccessMigration\MSAccessMigration\obj\Release\MSAccessMigration.application
+D:\Fifththird\MSAccessMigrationApplication\MSAccessMigration\MSAccessMigration\obj\Release\MSAccessMigration.HelpForm.resources
+D:\Fifththird\MSAccessMigrationApplication\MSAccessMigration\MSAccessMigration\bin\Release\Helpdoc.html
