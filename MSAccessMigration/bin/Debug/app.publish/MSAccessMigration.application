@@ -7,7 +7,7 @@
     <framework targetVersion="4.5.2" profile="Full" supportedRuntime="4.0.30319" />
   </compatibleFrameworks>
   <dependency>
-    <dependentAssembly dependencyType="install" codebase="MSAccessMigration.exe.manifest" size="5895">
+    <dependentAssembly dependencyType="install" codebase="Application Files\MSAccessMigration_1_0_0_3\MSAccessMigration.exe.manifest" size="5895">
       <assemblyIdentity name="MSAccessMigration.exe" version="1.0.0.3" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="x86" type="win32" />
       <hash>
         <dsig:Transforms>

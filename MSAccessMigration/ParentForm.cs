@@ -64,18 +64,19 @@ namespace MSAccessMigration
 
         private void helpToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Form frmHelp = CheckFormInstance("HelpForm");
-            if (frmHelp != null)
-            {
-                frmHelp.Activate();
-            }
-            else
-            {
-                frmHelp = new HelpForm();
-                frmHelp.MdiParent = this;
-                frmHelp.Dock = DockStyle.Fill;
-                frmHelp.Show();
-            }
+            System.Diagnostics.Process.Start("Helpdoc.pdf");
+            //Form frmHelp = CheckFormInstance("HelpForm");
+            //if (frmHelp != null)
+            //{
+            //    frmHelp.Activate();
+            //}
+            //else
+            //{
+            //    frmHelp = new HelpForm();
+            //    frmHelp.MdiParent = this;
+            //    frmHelp.Dock = DockStyle.Fill;
+            //    frmHelp.Show();
+            //}
         }
     }
 }

@@ -22,4 +22,4 @@ D:\Fifththird\MSAccessMigrationApplication\MSAccessMigration\MSAccessMigration\o
 D:\Fifththird\MSAccessMigrationApplication\MSAccessMigration\MSAccessMigration\obj\Debug\MSAccessMigration.application
 D:\Fifththird\MSAccessMigrationApplication\MSAccessMigration\MSAccessMigration\obj\Debug\MSAccessMigration.exe
 D:\Fifththird\MSAccessMigrationApplication\MSAccessMigration\MSAccessMigration\obj\Debug\MSAccessMigration.pdb
-D:\Fifththird\MSAccessMigrationApplication\MSAccessMigration\MSAccessMigration\bin\Debug\Helpdoc.html
+D:\Fifththird\MSAccessMigrationApplication\MSAccessMigration\MSAccessMigration\bin\Debug\Helpdoc.pdf
