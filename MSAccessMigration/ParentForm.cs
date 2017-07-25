@@ -64,6 +64,7 @@ namespace MSAccessMigration
 
         private void helpToolStripMenuItem_Click(object sender, EventArgs e)
         {
+          //  MSAccessMigrationLibrary.MSAccessTransfer.SetIdentityOff("Table1");
             System.Diagnostics.Process.Start("Helpdoc.pdf");
             //Form frmHelp = CheckFormInstance("HelpForm");
             //if (frmHelp != null)

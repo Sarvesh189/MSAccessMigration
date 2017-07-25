@@ -65,7 +65,7 @@ namespace MSAccessMigrationLibrary
         {
             
             List<string> _prps = new List<string>();
-            string strConnect = ConfigurationManager.AppSettings["SQLConnection"].ToString();
+            string strConnect = ConfigurationManager.ConnectionStrings["SQLConnection"].ConnectionString.ToString();
             Access.DoCmd _docmd = _application.DoCmd;
             foreach (var table in tables)
             {

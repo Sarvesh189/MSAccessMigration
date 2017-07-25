@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <asmv1:assembly xsi:schemaLocation="urn:schemas-microsoft-com:asm.v1 assembly.adaptive.xsd" manifestVersion="1.0" xmlns:asmv1="urn:schemas-microsoft-com:asm.v1" xmlns="urn:schemas-microsoft-com:asm.v2" xmlns:asmv2="urn:schemas-microsoft-com:asm.v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:co.v1="urn:schemas-microsoft-com:clickonce.v1" xmlns:asmv3="urn:schemas-microsoft-com:asm.v3" xmlns:dsig="http://www.w3.org/2000/09/xmldsig#" xmlns:co.v2="urn:schemas-microsoft-com:clickonce.v2">
-  <asmv1:assemblyIdentity name="MSAccessMigration.exe" version="1.0.0.3" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="x86" type="win32" />
+  <asmv1:assemblyIdentity name="MSAccessMigration.exe" version="1.0.0.4" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="x86" type="win32" />
   <application />
   <entryPoint>
     <assemblyIdentity name="MSAccessMigration" version="1.0.0.0" language="neutral" processorArchitecture="x86" />
@@ -61,19 +61,19 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>2+aOa8hSfhDRPRtyJkS/HdZR783hK/I0ksvmr7OH044=</dsig:DigestValue>
+        <dsig:DigestValue>vNA0HPViA7h83jNr3dx3qyZRusApRv+DCKHTMpfvCB0=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="MSAccessMigrationLibrary.dll" size="33280">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="MSAccessMigrationLibrary.dll" size="36352">
       <assemblyIdentity name="MSAccessMigrationLibrary" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>3OF8Ze4SnyKjYngIz6lWskVvYKXzBin3XsE4OfUwXXA=</dsig:DigestValue>
+        <dsig:DigestValue>dXHUbK+3VsGM8cGFkvGxgiZD/s+GZp+4aGIFHSITP20=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -98,13 +98,13 @@
       <dsig:DigestValue>GbWmDCnMe6Rk2NyYEtFyMIwfD/1bU4j4bi+/wi6h4UU=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="MSAccessMigration.exe.config" size="1273">
+  <file name="MSAccessMigration.exe.config" size="1447">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>8WYNFCEBamQhNc5UBCLPkmBQdcUWeC8Jz4NeiZ+T0Ys=</dsig:DigestValue>
+      <dsig:DigestValue>SKiQInolJUKH4VbN4Y/C9K18DcvXV9RO8U5gwqiJId8=</dsig:DigestValue>
     </hash>
   </file>
 </asmv1:assembly>

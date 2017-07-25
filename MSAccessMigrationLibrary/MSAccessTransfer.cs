@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Data.Common;
 using Access = Microsoft.Office.Interop.Access;
 
 namespace MSAccessMigrationLibrary
@@ -123,47 +124,87 @@ namespace MSAccessMigrationLibrary
             { AppLogManager.LogError(ex); }
         }
 
+        public  void SetIdentityOff(string table)
+        {
+            object recordsAffected;
+            var cmd = new ADODB.Command();
+            var con = new ADODB.Connection();
+            con.Provider = "MSDASQL";
+            con.ConnectionString = ConfigurationManager.ConnectionStrings["SQLConnection"].ConnectionString.Substring(4);
+            con.Open();
+
+            cmd.ActiveConnection = con; 
+           
+            cmd.CommandText = $"Set Identity_insert {table} Off";
+            cmd.Execute(out recordsAffected);
+            con.Close();
+
+        }
+
         public List<string> TransferObjectToSQL(List<string> tables, string sourceAccessfile)
         {
             List<string> _prps = new List<string>();
             try
             {
                 AppLogManager.LogInfo("Table transfer to SQL started");
-                string strConnect = ConfigurationManager.AppSettings["SQLConnection"].ToString();
+                string strConnect = ConfigurationManager.ConnectionStrings["SQLConnection"].ConnectionString.ToString();
                 Access.DoCmd _docmd = _application.DoCmd;
                 foreach (var table in tables)
                 {
+                    try
+                    {
+                        _application.OpenCurrentDatabase(sourceAccessfile, false, "");
 
-                    _application.OpenCurrentDatabase(sourceAccessfile, false, "");
-
-                    _docmd.TransferDatabase(Access.AcDataTransferType.acExport, "ODBC Database", strConnect, Access.AcObjectType.acTable, table, table);// "","testdb",false,"sa","Password",true);
-                    _application.CloseCurrentDatabase();
-
-                    _prps.Add(table);
+                        _docmd.TransferDatabase(Access.AcDataTransferType.acExport, "ODBC Database", strConnect, Access.AcObjectType.acTable, table, table);// "","testdb",false,"sa","Password",true);
+                                                                                                                                                            //  _docmd.RunSQL($"Set Identity_insert {table} Off");
+                        _application.CloseCurrentDatabase();
+                        SetIdentityOff(table);
+                        _prps.Add(table);
+                    }
+                    catch (Exception)
+                    {
+                        _application.CloseCurrentDatabase();
+                    }
                 }
 
                 foreach (var table in _prps)
                 {
-                    AccessDAO.DBEngine _dbEngine = new AccessDAO.DBEngine();
-                    AccessDAO.Database _db = _dbEngine.Workspaces[0].OpenDatabase(sourceAccessfile, false, false, "");
-                    _db.TableDefs.Delete(table);
-                    _db.TableDefs.Refresh();
-                    _db.Close();
+                    AccessDAO.Database _db = null;
+                    try
+                    {
+                        AccessDAO.DBEngine _dbEngine = new AccessDAO.DBEngine();
+                        _db = _dbEngine.Workspaces[0].OpenDatabase(sourceAccessfile, false, false, "");
+                        _db.TableDefs.Delete(table);
+                        _db.TableDefs.Refresh();
+                        _db.Close();
+                    }
+                    catch (Exception)
+                    {
+                        _db.Close();
+                        _db = null;
+                    }
 
                 }
 
                 foreach (var table in _prps)
                 {
-                    AccessDAO.DBEngine _dbEngine = new AccessDAO.DBEngine();
-                    AccessDAO.Database _db = _dbEngine.Workspaces[0].OpenDatabase(sourceAccessfile, false, false, "");
-                    _db.TableDefs.Refresh();
+                    AccessDAO.Database _db = null;
+                    try
+                    {
+                        AccessDAO.DBEngine _dbEngine = new AccessDAO.DBEngine();
+                         _db = _dbEngine.Workspaces[0].OpenDatabase(sourceAccessfile, false, false, "");
+                        _db.TableDefs.Refresh();
 
-                    var newtbl = _db.CreateTableDef(table, 0, table, strConnect);
+                        var newtbl = _db.CreateTableDef(table, 0, table, strConnect);
 
-                    _db.TableDefs.Append(newtbl);
+                        _db.TableDefs.Append(newtbl);
 
-                    _db.Close();
-                    AppLogManager.LogInfo(table +" transferred");
+                        _db.Close();
+                        AppLogManager.LogInfo(table + " transferred");
+                    }
+                    catch (Exception)
+                    { _db.Close();
+                        _db = null; }
                 }
                 AppLogManager.LogInfo("Table transfer to SQL done");
             }
