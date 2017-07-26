@@ -26,6 +26,7 @@ namespace MSAccessMigration
 
         private void MSAccessTransfer_ItemTransferred(object sender, ItemTransferEventArg e)
         {
+            AppLogManager.LogInfo("ItemTransferred ::"+e.ItemType);
             foreach (DataGridViewRow row in gvAnalysis.Rows)
             {
                 if (row.Cells["AccessObject"].Value.ToString() == e.ItemName)

@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("MSAccessMigration")]
-[assembly: AssemblyDescription("Microsoft Access Migration Tool. Design and developed by Sarvesh Upadhyay")]
+[assembly: AssemblyTitle("TestingMSAccessLibrary")]
+[assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Microsoft Access Migration Application")]
+[assembly: AssemblyProduct("TestingMSAccessLibrary")]
 [assembly: AssemblyCopyright("Copyright ©  2017")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("cc6215a5-9d95-4db9-88c3-01a0ce5d880f")]
+[assembly: Guid("3edbbdf2-e368-4d23-9ad5-d05395464584")]
 
 // Version information for an assembly consists of the following four values:
 //

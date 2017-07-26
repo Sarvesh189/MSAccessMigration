@@ -50,6 +50,52 @@ namespace MSAccessMigrationLibrary
 
                     }
                 }
+                else if(property.Name == "TablesRelation")                  
+                    {
+                        if (propertyValue != null)
+                        {
+                            var relations = propertyValue as List<AccessTableRelationInfo>;
+                            formattedString.Append("    " + relations.Count);
+                            foreach (var relation in relations)
+                            {
+                                var gvAccessAnalysis = new GVAccessAnalysis()
+                                {
+                                    AccessObject = relation.RelationName,
+                                    ObjectType = "Relation",
+                                    Remarks = relation.ToString(),
+                                    IsMigrated = false
+                                };
+
+                                _gvAccessAnalysis.Add(gvAccessAnalysis);
+                                AppLogManager.LogInfo(gvAccessAnalysis.ToString());
+
+                            }
+
+                        }
+                    }
+                else if (property.Name == "TableIndexs")
+                {
+                    if (propertyValue != null)
+                    {
+                        var indexes = propertyValue as List<AccessTableIndexInfo>;
+                        formattedString.Append("    " + indexes.Count);
+                        foreach (var index in indexes)
+                        {
+                            var gvAccessAnalysis = new GVAccessAnalysis()
+                            {
+                                AccessObject = index.Name,
+                                ObjectType = "Index",
+                                Remarks = index.ToString(),
+                                IsMigrated = false
+                            };
+
+                            _gvAccessAnalysis.Add(gvAccessAnalysis);
+                            AppLogManager.LogInfo(gvAccessAnalysis.ToString());
+
+                        }
+
+                    }
+                }
                 else {
                     if (propertyValue != null)
                     {

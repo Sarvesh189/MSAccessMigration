@@ -8,7 +8,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("MSAccessMigrationLibrary")]
 [assembly: AssemblyDescription("Microsoft Access Migration Tool. Design and developed by Sarvesh Upadhyay")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Tavant Technologies Pvt Ltd")]
+[assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("MSAccessMigrationLibrary")]
 [assembly: AssemblyCopyright("Copyright ©  2017")]
 [assembly: AssemblyTrademark("")]

@@ -229,5 +229,89 @@ namespace MSAccessMigrationLibrary
 
             return _modules;
         }
+
+        public List<AccessTableRelationInfo> GetRelations(string accessDBfileName)
+        {
+            var relations = new List<AccessTableRelationInfo>();
+            Database _db = null;
+            DBEngine _dbEngine = new DBEngine();
+            try
+            {
+                _db = _dbEngine.OpenDatabase(accessDBfileName, false, false, "");
+
+                var debugtables = new List<string>();
+              
+                for (int i = 0; i < _db.Relations.Count; i++)
+                {
+                    if (!_db.Relations[i].Name.StartsWith("MSys"))
+                    {
+                        var tblr = new AccessTableRelationInfo() { RelationName = _db.Relations[i].Name, Table = _db.Relations[i].Table, ForeignTable = _db.Relations[i].ForeignTable };
+
+
+                        foreach (var field in _db.Relations[i].Fields)
+                        {
+
+                            tblr.FieldsInfo.Add(new AccessFieldInfo() { Name = (field as Field).Name, ForeignName = (field as Field).ForeignName });
+                        }
+                        relations.Add(tblr);
+                    }
+                }             
+            }
+            catch (Exception ex)
+            {
+                AppLogManager.LogError(ex);
+            }
+            finally
+            {
+                if (_db != null)
+                    _db.Close();
+            }
+            return relations;
+        }
+
+        public List<AccessTableIndexInfo> GetIndexes(string accessDBfileName)
+        {
+            var indexes = new List<AccessTableIndexInfo>();
+            Database _db = null;
+            DBEngine _dbEngine = new DBEngine();
+            try
+            {
+                _db = _dbEngine.OpenDatabase(accessDBfileName, false, false, "");
+
+                var debugtables = new List<string>();
+
+                for (int i = 0; i < _db.TableDefs.Count; i++)
+                {
+                    if (!_db.TableDefs[i].Name.StartsWith("MSys"))
+                    {
+                        for (int j = 0; j < _db.TableDefs[i].Indexes.Count; j++)
+                        {
+
+                            var tblIndex = new AccessTableIndexInfo() { Table = _db.TableDefs[i].Name, Name = _db.TableDefs[i].Indexes[j].Name, IsClustered = _db.TableDefs[i].Indexes[j].Clustered, IsForeignKey = _db.TableDefs[i].Indexes[j].Foreign, IsPrimaryKey = _db.TableDefs[i].Indexes[j].Primary, IsRequired = _db.TableDefs[i].Indexes[j].Required, IsUniqueKey = _db.TableDefs[i].Indexes[j].Unique };
+                          //  var fields = _db.TableDefs[i].Indexes[j].Fields as Fields;
+                            for (int k = 0; k < _db.TableDefs[i].Indexes[j].Fields.Count; k++)
+                            {
+                             //   var fld = _db.TableDefs[i].Indexes[j].Fields[k];
+                                tblIndex.Fields.Add(new AccessFieldInfo() { Name = _db.TableDefs[i].Indexes[j].Fields[k].Name });
+                            }
+
+
+
+                            indexes.Add(tblIndex);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                AppLogManager.LogError(ex);
+            }
+            finally
+            {
+                if (_db != null)
+                    _db.Close();
+            }
+            return indexes;
+        }
     }
 }

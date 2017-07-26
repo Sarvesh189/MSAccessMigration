@@ -61,19 +61,19 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>vNA0HPViA7h83jNr3dx3qyZRusApRv+DCKHTMpfvCB0=</dsig:DigestValue>
+        <dsig:DigestValue>OV/8f7XKyZ1HmXDpB2a928ex1L2JdXEMWwrX1BLCyIA=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="MSAccessMigrationLibrary.dll" size="36352">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="MSAccessMigrationLibrary.dll" size="51200">
       <assemblyIdentity name="MSAccessMigrationLibrary" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>dXHUbK+3VsGM8cGFkvGxgiZD/s+GZp+4aGIFHSITP20=</dsig:DigestValue>
+        <dsig:DigestValue>eXkePzXzpM4/t47Ut+PxMG8T7FPTkL+2jg35OiJZQS8=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

@@ -1,0 +1,5 @@
+D:\Fifththird\MSAccessMigrationApplication\MSAccessMigration\TestingMSAccessLibrary\bin\Debug\TestingMSAccessLibrary.dll
+D:\Fifththird\MSAccessMigrationApplication\MSAccessMigration\TestingMSAccessLibrary\bin\Debug\TestingMSAccessLibrary.pdb
+D:\Fifththird\MSAccessMigrationApplication\MSAccessMigration\TestingMSAccessLibrary\obj\Debug\TestingMSAccessLibrary.csprojResolveAssemblyReference.cache
+D:\Fifththird\MSAccessMigrationApplication\MSAccessMigration\TestingMSAccessLibrary\obj\Debug\TestingMSAccessLibrary.dll
+D:\Fifththird\MSAccessMigrationApplication\MSAccessMigration\TestingMSAccessLibrary\obj\Debug\TestingMSAccessLibrary.pdb

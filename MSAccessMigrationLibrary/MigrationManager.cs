@@ -30,13 +30,15 @@ namespace MSAccessMigrationLibrary
         public DBEngineObject AnalyseAccessDB(string accessDBfileName)
         {
             AppLogManager.LogInfo(string.Format("Analysis of {0}", accessDBfileName));
-
             _dbEngineobject.Forms = _msaccessAnalysis.GetFormNames(accessDBfileName);
             _dbEngineobject.Tables = _msaccessAnalysis.GetTablesName(accessDBfileName);
             _dbEngineobject.Reports = _msaccessAnalysis.GetReport(accessDBfileName);
             _dbEngineobject.Queries = _msaccessAnalysis.GetQueries(accessDBfileName);
             _dbEngineobject.Macros = _msaccessAnalysis.GetMacros(accessDBfileName);
             _dbEngineobject.Modules = _msaccessAnalysis.GetModules(accessDBfileName);
+            _dbEngineobject.TableIndexs = _msaccessAnalysis.GetIndexes(accessDBfileName);
+            _dbEngineobject.TablesRelation = _msaccessAnalysis.GetRelations(accessDBfileName);
+          
             return _dbEngineobject;
         }
 
@@ -55,6 +57,20 @@ namespace MSAccessMigrationLibrary
             _msaccessTransfer.TransferQueries(sourceDBFile, destinationDBFile, progress);
             _msaccessTransfer.TransferMacros(sourceDBFile, destinationDBFile, progress);
             _msaccessTransfer.TransferModules(sourceDBFile, destinationDBFile, progress);
+           
+
+            if (tables != null && tables.Count > 0)
+            {
+                _msaccessTransfer.CreateSqlIndexes(destinationDBFile);
+            } else
+            _msaccessTransfer.CreateIndexes(destinationDBFile,progress);
+            if (tables != null && tables.Count > 0)
+            {
+                _msaccessTransfer.EstablishRelationsInSql(sourceDBFile, destinationDBFile, progress);
+            }
+            else
+                _msaccessTransfer.EstablishRelations(sourceDBFile, destinationDBFile, progress);
+
             AppLogManager.LogInfo("Transformation Done");
             return true;
         }

@@ -17,6 +17,10 @@
             public List<string> Reports { get; set; }
 
             public List<string> Modules { get; set; }
+
+            public List<AccessTableRelationInfo> TablesRelation { get; set; }
+
+            public List<AccessTableIndexInfo> TableIndexs { get; set; }
         }
     }
 

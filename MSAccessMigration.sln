@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MSAccessMigration", "MSAcce
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MSAccessMigrationLibrary", "MSAccessMigrationLibrary\MSAccessMigrationLibrary.csproj", "{7AB4EBD9-8D2F-4568-B649-2A49DB743162}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestingMSAccessLibrary", "TestingMSAccessLibrary\TestingMSAccessLibrary.csproj", "{3EDBBDF2-E368-4D23-9AD5-D05395464584}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{7AB4EBD9-8D2F-4568-B649-2A49DB743162}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7AB4EBD9-8D2F-4568-B649-2A49DB743162}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7AB4EBD9-8D2F-4568-B649-2A49DB743162}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3EDBBDF2-E368-4D23-9AD5-D05395464584}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3EDBBDF2-E368-4D23-9AD5-D05395464584}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3EDBBDF2-E368-4D23-9AD5-D05395464584}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3EDBBDF2-E368-4D23-9AD5-D05395464584}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

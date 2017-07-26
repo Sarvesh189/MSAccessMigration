@@ -20,6 +20,13 @@ namespace MSAccessMigrationLibrary
         void TransferModules(string sourceDBFile, string destinationDBFile, IProgress<int> progress);
 
         void TransferMacros(string sourceDBFile, string destinationDBFile, IProgress<int> progress);
+        void EstablishRelations(string sourceDBFile, string destinationDBFile, IProgress<int> progress);
+
+        void EstablishRelationsInSql(string sourceDBFile, string destinationDBFile, IProgress<int> progress);
+
+        void CreateIndexes(string destinationDBFile, IProgress<int> progress);
+
+        void CreateSqlIndexes(string destinationDBFile);
          event EventHandler<ItemTransferEventArg> ItemTransferred;
     }
 }
