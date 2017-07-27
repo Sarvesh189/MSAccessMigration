@@ -54,14 +54,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="MSAccessMigration.exe" size="66048">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="MSAccessMigration.exe" size="69632">
       <assemblyIdentity name="MSAccessMigration" version="1.0.0.0" language="neutral" processorArchitecture="x86" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>OV/8f7XKyZ1HmXDpB2a928ex1L2JdXEMWwrX1BLCyIA=</dsig:DigestValue>
+        <dsig:DigestValue>NR25jfVDJ101YpuDI2fFdyrfljuAn00m7jLHbZpJgRg=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
